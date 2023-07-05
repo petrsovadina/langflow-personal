@@ -140,3 +140,162 @@ The cursor: default; property value restores the browser's default cursor style 
 .react-flow__pane {
   cursor: default;
 }
+
+
+@layer components {
+  .round-buttons-position {
+    @apply fixed right-4
+  }
+  .side-bar-arrangement {
+    @apply flex h-full w-52 flex-col overflow-hidden border-r scrollbar-hide
+  }
+  .side-bar-search-div-placement {
+    @apply relative mx-auto mb-2 mt-2 flex items-center
+  }
+  .side-bar-components-icon {
+    @apply h-6 w-4 text-ring
+  }
+  .side-bar-components-text {
+    @apply w-full truncate pr-1 text-xs text-foreground
+  }
+  .side-bar-components-div-form {
+    @apply flex w-full items-center justify-between rounded-md rounded-l-none border border-l-0 border-dashed border-ring  bg-white px-3 py-1 text-sm
+  }
+  .side-bar-components-border {
+    @apply cursor-grab rounded-l-md border-l-8
+  }
+  .side-bar-components-gap {
+    @apply flex flex-col gap-2 p-2
+  }
+  .side-bar-components-div-arrangement {
+    @apply w-full overflow-auto scrollbar-hide
+  }
+  .search-icon {
+    @apply absolute inset-y-0 right-0 flex items-center py-1.5 pr-3
+  }
+  .extra-side-bar-save-disable {
+    @apply text-muted-foreground
+  }
+  .side-bar-button-size {
+    @apply h-5 w-5
+  }
+  .side-bar-buttons-arrangement {
+    @apply mb-2 mt-2 flex w-full items-center justify-between gap-2 px-2
+  }
+  .extra-side-bar-buttons {
+    @apply relative inline-flex w-full items-center justify-center rounded-md bg-background   px-2 py-2 text-foreground shadow-sm ring-1 ring-inset ring-input transition-all duration-500 ease-in-out
+  }
+  .extra-side-bar-buttons:hover {
+    @apply hover:bg-muted
+  }
+  .button-div-style {
+    @apply gap-2 flex
+  }
+  .input-primary:focus{
+    @apply focus:placeholder-transparent focus:ring-ring focus:border-ring
+  }
+  .input-primary {
+    @apply bg-background block border-ring form-input px-3 placeholder:text-muted-foreground rounded-md shadow-sm sm:text-sm truncate w-full;
+  }
+  .input-edit-node{
+    @apply input-primary placeholder:text-center pt-0.5 pb-0.5 text-center
+  }
+  .input-search{
+    @apply input-primary pr-7 mx-2
+  }
+  .input-disable{
+    @apply bg-input
+  }
+  .input-dialog{
+    @apply text-ring cursor-pointer bg-transparent
+  }
+  .round-button-form {
+    @apply flex h-12 w-12 cursor-pointer justify-center rounded-full bg-border px-3 py-1 shadow-md
+  }
+  .round-button-div {
+    @apply flex items-center gap-3
+  }
+  .build-trigger-loading-icon {
+    @apply stroke-build-trigger
+  }
+  .build-trigger-icon {
+    @apply w-6 fill-build-trigger stroke-1 stroke-build-trigger
+  }
+  .message-button-position {
+    @apply absolute bottom-4 right-3
+  }
+  .message-button-icon {
+    @apply w-6 fill-chat-trigger stroke-chat-trigger stroke-1
+  }
+  .components-disclosure-arrangement {
+    @apply -mt-px flex w-full select-none items-center justify-between border-y border-y-input bg-muted px-3 py-2
+  }
+  .components-disclosure-title {
+    @apply flex items-center text-sm text-primary
+  }
+  .components-disclosure-div {
+    @apply flex gap-2
+  }
+  .flow-page-positioning {
+    @apply h-full w-full overflow-hidden
+  }
+  .logspace-page-icon {
+    @apply absolute bottom-2 left-7 flex h-6 cursor-pointer flex-col items-center justify-start overflow-hidden rounded-lg bg-foreground px-2 text-center font-sans text-xs tracking-wide text-secondary transition-all duration-500 ease-in-out
+  }
+
+  .logspace-page-icon:hover {
+    @apply hover:h-12
+  }
+  
+  .flex-max-width {
+    @apply flex w-full
+  }
+
+  .main-page-panel {
+    @apply flex-max-width h-full flex-col overflow-auto bg-muted px-16
+  }
+
+  .main-page-nav-arrangement {
+    @apply flex-max-width justify-between px-6 py-12 pb-2
+  }
+
+  .main-page-nav-title {
+    @apply flex items-center justify-center gap-2 text-2xl font-semibold
+  }
+
+  .main-page-nav-button {
+    @apply mr-2 w-4
+  }
+
+  .main-page-description-text {
+    @apply flex w-[60%] px-6 pb-14 text-muted-foreground
+  }
+
+  .main-page-flows-display {
+    @apply grid w-full gap-4 p-4 md:grid-cols-2 lg:grid-cols-4
+  }
+
+  .community-page-arrangement {
+    @apply flex-max-width h-full flex-col overflow-auto bg-muted px-16
+  }
+
+  .community-page-nav-arrangement {
+    @apply flex-max-width justify-between px-6 py-12 pb-2
+  }
+
+  .community-page-nav-title {
+    @apply flex items-center justify-center gap-2 text-2xl font-semibold
+  }
+
+  .community-page-nav-button {
+    @apply flex gap-2
+  }
+
+  .community-page-description-text {
+    @apply flex w-[70%] px-6 pb-8 text-muted-foreground 
+  }
+
+  .community-pages-flows-panel {
+    @apply grid w-full gap-4 p-4 md:grid-cols-2 lg:grid-cols-4
+  }
+}

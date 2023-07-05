@@ -30,16 +30,15 @@ export default function ChatTrigger({ open, setOpen, isBuilt }) {
       leaveFrom="translate-y-0"
       leaveTo="translate-y-96"
     >
-      <div className="absolute bottom-4 right-3">
+      <div className="message-button-position">
         <div
-          className="flex justify-center align-center py-1 px-3 w-12 h-12 rounded-full shadow-md shadow-round-btn-shadow hover:shadow-round-btn-shadow
-          bg-border cursor-pointer"
+          className="round-button-form"
           onClick={handleClick}
         >
           <button>
-            <div className="flex gap-3">
+            <div className="round-button-div">
               <MessagesSquare
-                className="pth-6 w-6 fill-chat-trigger stroke-1 stroke-chat-trigger"
+                className="message-button-icon"
                 style={{ color: "white" }}
                 strokeWidth={1.5}
               />

@@ -3,7 +3,7 @@ import { PopUpContext } from "../../contexts/popUpContext";
 import { TextAreaComponentType } from "../../types/components";
 import GenericModal from "../../modals/genericModal";
 import { TypeModal } from "../../utils";
-import { INPUT_STYLE } from "../../constants";
+
 import { ExternalLink } from "lucide-react";
 
 export default function PromptAreaComponent({
@@ -28,10 +28,10 @@ export default function PromptAreaComponent({
   return (
     <div
       className={
-        disabled ? "pointer-events-none cursor-not-allowed w-full" : " w-full"
+        disabled ? "pointer-events-none w-full cursor-not-allowed" : " w-full"
       }
     >
-      <div className="w-full flex items-center gap-3">
+      <div className="w-full flex items-center">
         <span
           onClick={() => {
             openPopUp(
@@ -49,10 +49,8 @@ export default function PromptAreaComponent({
           }}
           className={
             editNode
-              ? "cursor-pointer truncate placeholder:text-center text-ring border-1 block w-full pt-0.5 pb-0.5 form-input   rounded-md border-ring shadow-sm sm:text-sm" +
-                INPUT_STYLE
-              : "truncate block w-full text-ring px-3 py-2 rounded-md border border-ring shadow-sm sm:text-sm" +
-                (disabled ? " bg-input" : "")
+              ? " input-edit-node " + " input-dialog "
+              : (disabled ? " input-disable " : "") + " input-primary " + " input-dialog "
           }
         >
           {myValue !== "" ? myValue : "Type your prompt here"}
@@ -73,7 +71,7 @@ export default function PromptAreaComponent({
             );
           }}
         >
-          {!editNode && <ExternalLink className="w-6 h-6 hover:text-ring " />}
+          {!editNode && <ExternalLink strokeWidth={1.5} className="w-6 h-6 hover:text-accent-foreground ml-3" />}
         </button>
       </div>
     </div>

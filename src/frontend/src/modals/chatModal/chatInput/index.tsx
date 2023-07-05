@@ -1,7 +1,6 @@
 import { classNames } from "../../../utils";
 import { useContext, useEffect, useRef, useState } from "react";
 import { TabsContext } from "../../../contexts/tabsContext";
-import { INPUT_STYLE } from "../../../constants";
 import { Lock, Send } from "lucide-react";
 
 export default function ChatInput({
@@ -53,8 +52,8 @@ export default function ChatInput({
           lockChat
             ? " bg-input text-foreground "
             : "  bg-background text-foreground ",
-          "form-input block w-full custom-scroll rounded-md border-ring  pr-10 sm:text-sm" +
-            INPUT_STYLE
+          "form-input block w-full rounded-md border-ring pr-10  custom-scroll sm:text-sm" +
+            " input-primary "
         )}
         placeholder={"Send a message..."}
       />
@@ -62,7 +61,7 @@ export default function ChatInput({
         <button disabled={lockChat} onClick={() => sendMessage()}>
           {lockChat ? (
             <Lock
-              className="h-5 w-5 text-ring   animate-pulse"
+              className="h-5 w-5 animate-pulse   text-ring"
               aria-hidden="true"
             />
           ) : (

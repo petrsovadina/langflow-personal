@@ -1,9 +1,10 @@
 import { Listbox, Transition } from "@headlessui/react";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import { DropDownComponentType } from "../../types/components";
 import { classNames } from "../../utils";
-import { INPUT_STYLE } from "../../constants";
 import { ChevronsUpDown, Check } from "lucide-react";
+import { PopUpContext } from "../../contexts/popUpContext";
+import { TabsContext } from "../../contexts/tabsContext";
 
 export default function Dropdown({
   value,
@@ -11,13 +12,17 @@ export default function Dropdown({
   onSelect,
   editNode = false,
   numberOfOptions = 0,
+  apiModal = false,
 }: DropDownComponentType) {
+  const { closePopUp } = useContext(PopUpContext);
+
   let [internalValue, setInternalValue] = useState(
     value === "" || !value ? "Choose an option" : value
   );
+
   useEffect(() => {
     setInternalValue(value === "" || !value ? "Choose an option" : value);
-  }, [value]);
+  }, [closePopUp]);
 
   return (
     <>
@@ -34,13 +39,11 @@ export default function Dropdown({
               <Listbox.Button
                 className={
                   editNode
-                    ? "relative pr-8 placeholder:text-center block w-full pt-0.5 pb-0.5 form-input rounded-md shadow-sm sm:text-sm border-ring border-1" +
-                      INPUT_STYLE
-                    : "ring-1 ring-ring placeholder:text-muted-foreground w-full py-2 pl-3 pr-10 text-left focus-visible:outline-none rounded-md border-ring shadow-sm sm:text-sm bg-background" +
-                      INPUT_STYLE
+                    ? "border-1 relative pr-8 input-edit-node"
+                    : "py-2 pl-3 pr-10 text-left input-primary"
                 }
               >
-                <span className="block bg-background truncate w-full">
+                <span className="block w-full truncate bg-background">
                   {internalValue}
                 </span>
                 <span
@@ -63,11 +66,12 @@ export default function Dropdown({
                 leaveTo="opacity-0"
               >
                 <Listbox.Options
-                  className={
+                  className={classNames(
                     editNode
-                      ? "absolute z-10 mt-1 max-h-60 overflow-auto rounded-md bg-background py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm w-[215px]"
-                      : "nowheel absolute z-10 mt-1 max-h-60 w-full overflow-auto overflow-y rounded-md bg-background py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm "
-                  }
+                      ? "z-10 mt-1 max-h-60 w-[215px] overflow-auto rounded-md bg-background py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
+                      : "nowheel overflow-y z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-background py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm ",
+                    apiModal ? "mb-2 w-[250px]" : "absolute"
+                  )}
                 >
                   {options.map((option, id) => (
                     <Listbox.Option

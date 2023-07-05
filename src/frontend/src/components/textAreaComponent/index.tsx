@@ -3,7 +3,7 @@ import { PopUpContext } from "../../contexts/popUpContext";
 import { TextAreaComponentType } from "../../types/components";
 import GenericModal from "../../modals/genericModal";
 import { TypeModal } from "../../utils";
-import { INPUT_STYLE } from "../../constants";
+
 import { ExternalLink } from "lucide-react";
 
 export default function TextAreaComponent({
@@ -31,7 +31,7 @@ export default function TextAreaComponent({
       <div
         className={
           editNode
-            ? "w-full flex items-center"
+            ? "w-full items-center"
             : "w-full flex items-center gap-3"
         }
       >
@@ -52,10 +52,8 @@ export default function TextAreaComponent({
           }}
           className={
             editNode
-              ? "truncate cursor-pointer placeholder:text-center text-ring border-1 block w-full pt-0.5 pb-0.5 form-input   rounded-md border-ring bg-transparent shadow-sm sm:text-sm" +
-                INPUT_STYLE
-              : "truncate block w-full text-ring px-3 py-2 rounded-md border border-ring shadow-sm sm:text-sm" +
-                (disabled ? " bg-input" : "")
+              ? "input-edit-node " + " input-dialog "
+              : " input_dialog " + "px-3 py-2" + (disabled ? " input-disable " : "")
           }
         >
           {myValue !== "" ? myValue : "Type something..."}
@@ -76,7 +74,7 @@ export default function TextAreaComponent({
             );
           }}
         >
-          {!editNode && <ExternalLink className="w-6 h-6 hover:text-ring " />}
+          {!editNode && <ExternalLink strokeWidth={1.5} className="w-6 h-6 hover:text-accent-foreground ml-3" />}
         </button>
       </div>
     </div>

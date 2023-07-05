@@ -15,7 +15,6 @@ import ExportModal from "../../../../modals/exportModal";
 import ApiModal from "../../../../modals/ApiModal";
 import { TabsContext } from "../../../../contexts/tabsContext";
 import { alertContext } from "../../../../contexts/alertContext";
-import { INPUT_STYLE } from "../../../../constants";
 import { Separator } from "../../../../components/ui/separator";
 import { Menu } from "lucide-react";
 
@@ -60,48 +59,48 @@ export default function ExtraSidebar() {
   }
 
   return (
-    <div className="w-52 flex flex-col overflow-hidden scrollbar-hide h-full border-r">
-      <div className="mt-2 mb-2 w-full flex gap-2 justify-between px-2 items-center">
-        <ShadTooltip delayDuration={1000} content="Import" side="top">
+    <div className="side-bar-arrangement">
+      <div className="side-bar-buttons-arrangement">
+        <ShadTooltip content="Import" side="top">
           <button
-            className="text-foreground w-full justify-center shadow-sm transition-all duration-500 ease-in-out   relative inline-flex items-center rounded-md bg-background px-2 py-2 ring-1 ring-inset ring-input hover:bg-muted"
+            className="extra-side-bar-buttons"
             onClick={() => {
               // openPopUp(<ImportModal />);
               uploadFlow();
             }}
           >
-            <FileUp strokeWidth={1.5} className="w-5 h-5 "></FileUp>
+            <FileUp strokeWidth={1.5} className="side-bar-button-size "></FileUp>
           </button>
         </ShadTooltip>
 
-        <ShadTooltip delayDuration={1000} content="Export" side="top">
+        <ShadTooltip content="Export" side="top">
           <button
             className={classNames(
-              "text-foreground w-full justify-center shadow-sm transition-all duration-500 ease-in-out   relative inline-flex items-center bg-background px-2 py-2  ring-1 ring-inset ring-input hover:bg-muted rounded-md"
+              "extra-side-bar-buttons"
             )}
             onClick={(event) => {
               openPopUp(<ExportModal />);
             }}
           >
-            <FileDown strokeWidth={1.5} className="w-5 h-5  "></FileDown>
+            <FileDown strokeWidth={1.5} className="side-bar-button-size"></FileDown>
           </button>
         </ShadTooltip>
-        <ShadTooltip delayDuration={1000} content="Code" side="top">
+        <ShadTooltip content="Code" side="top">
           <button
             className={classNames(
-              "text-foreground w-full justify-center shadow-sm transition-all duration-500 ease-in-out   relative inline-flex items-center bg-background px-2 py-2  ring-1 ring-inset ring-input hover:bg-muted rounded-md"
+              "extra-side-bar-buttons"
             )}
             onClick={(event) => {
               openPopUp(<ApiModal flow={flows.find((f) => f.id === tabId)} />);
             }}
           >
-            <Code2 strokeWidth={1.5} className="w-5 h-5  "></Code2>
+            <Code2 strokeWidth={1.5} className="side-bar-button-size"></Code2>
           </button>
         </ShadTooltip>
 
-        <ShadTooltip delayDuration={1000} content="Save" side="top">
+        <ShadTooltip content="Save" side="top">
           <button
-            className="text-foreground w-full justify-center transition-all shadow-sm duration-500 ease-in-out   relative inline-flex items-center bg-background px-2 py-2  ring-1 ring-inset ring-input hover:bg-muted rounded-md"
+            className="extra-side-bar-buttons"
             onClick={(event) => {
               saveFlow(flows.find((f) => f.id === tabId));
               setSuccessData({ title: "Changes saved successfully" });
@@ -111,35 +110,32 @@ export default function ExtraSidebar() {
             <Save
               strokeWidth={1.5}
               className={
-                "w-5 h-5" + (isPending ? " " : " text-muted-foreground")
+                "side-bar-button-size" + (isPending ? " " : " extra-side-bar-save-disable")
               }
             ></Save>
           </button>
         </ShadTooltip>
       </div>
       <Separator />
-      <div className="relative mt-2 flex items-center mb-2 mx-auto">
+      <div className="side-bar-search-div-placement">
         <input
           type="text"
           name="search"
           id="search"
           placeholder="Search"
-          className={
-            INPUT_STYLE +
-            "w-full border-1 rounded-md border border-input bg-transparent px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
-          }
+          className="input-search"
           onChange={(e) => {
             handleSearchInput(e.target.value);
             setSearch(e.target.value);
           }}
         />
-        <div className="absolute inset-y-0 right-0 flex py-1.5 pr-3 items-center">
+        <div className="search-icon">
           {/* ! replace hash color here */}
           <Search size={20} strokeWidth={1.5} className="text-primary" />
         </div>
       </div>
 
-      <div className="w-full overflow-auto scrollbar-hide">
+      <div className="side-bar-components-div-arrangement">
         {Object.keys(dataFilter)
           .sort()
           .map((d: keyof APIObjectType, i) =>
@@ -152,20 +148,19 @@ export default function ExtraSidebar() {
                   Icon: nodeIconsLucide[d] ?? nodeIconsLucide.unknown,
                 }}
               >
-                <div className="p-2 flex flex-col gap-2">
+                <div className="side-bar-components-gap">
                   {Object.keys(dataFilter[d])
                     .sort()
                     .map((t: string, k) => (
                       <ShadTooltip
                         content={data[d][t].display_name}
-                        delayDuration={1500}
                         side="right"
                         key={data[d][t].display_name}
                       >
                         <div key={k} data-tooltip-id={t}>
                           <div
                             draggable
-                            className={"cursor-grab border-l-8 rounded-l-md"}
+                            className={"side-bar-components-border"}
                             style={{
                               borderLeftColor:
                                 nodeColors[d] ?? nodeColors.unknown,
@@ -184,11 +179,11 @@ export default function ExtraSidebar() {
                               );
                             }}
                           >
-                            <div className="flex w-full justify-between text-sm px-3 py-1 bg-white items-center border-dashed border-ring  border-l-0 rounded-md rounded-l-none border">
-                              <span className="text-foreground  w-full pr-1 truncate text-xs">
+                            <div className="side-bar-components-div-form">
+                              <span className="side-bar-components-text">
                                 {data[d][t].display_name}
                               </span>
-                              <Menu className="w-4 h-6  text-ring " />
+                              <Menu className="side-bar-components-icon " />
                             </div>
                           </div>
                         </div>

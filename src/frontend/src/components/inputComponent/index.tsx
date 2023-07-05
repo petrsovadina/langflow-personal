@@ -3,7 +3,6 @@ import { InputComponentType } from "../../types/components";
 import { classNames } from "../../utils";
 import { TabsContext } from "../../contexts/tabsContext";
 import { PopUpContext } from "../../contexts/popUpContext";
-import { INPUT_STYLE } from "../../constants";
 
 export default function InputComponent({
   value,
@@ -33,7 +32,7 @@ export default function InputComponent({
     <div
       className={
         disabled
-          ? "relative pointer-events-none cursor-not-allowed"
+          ? "pointer-events-none relative cursor-not-allowed"
           : "relative"
       }
     >
@@ -46,13 +45,10 @@ export default function InputComponent({
           if (disableCopyPaste) setDisableCopyPaste(false);
         }}
         className={classNames(
-          "block w-full pr-12 form-input rounded-md bg-background border-ring shadow-sm sm:text-sm focus:placeholder-transparent placeholder:text-muted-foreground",
-          disabled ? " bg-input" : "",
+          " pr-12 ",
+          disabled ? " input-disable " : "",
           password && !pwdVisible && myValue !== "" ? "password" : "",
-          editNode
-            ? "border-1 block w-full pt-0.5 pb-0.5 form-input rounded-md border-ring shadow-sm sm:text-sm text-center" +
-                INPUT_STYLE
-            : "ring-offset-input" + INPUT_STYLE,
+          editNode ? " input-edit-node " : " input-primary ",
           password && editNode ? "pr-8" : "pr-3"
         )}
         placeholder={password && editNode ? "Key" : "Type something..."}
@@ -65,7 +61,7 @@ export default function InputComponent({
         <button
           className={classNames(
             editNode
-              ? "absolute inset-y-0 right-0 pr-2 items-center text-muted-foreground"
+              ? "absolute inset-y-0 right-0 items-center pr-2 text-muted-foreground"
               : "absolute inset-y-0 right-0 items-center px-4 text-muted-foreground"
           )}
           onClick={() => {
@@ -82,8 +78,8 @@ export default function InputComponent({
                 stroke="currentColor"
                 className={classNames(
                   editNode
-                    ? "w-5 h-5 absolute bottom-0.5 right-2"
-                    : "w-5 h-5 absolute bottom-2 right-3"
+                    ? "absolute bottom-0.5 right-2 h-5 w-5"
+                    : "absolute bottom-2 right-3 h-5 w-5"
                 )}
               >
                 <path
@@ -101,8 +97,8 @@ export default function InputComponent({
                 stroke="currentColor"
                 className={classNames(
                   editNode
-                    ? "w-5 h-5 absolute bottom-0.5 right-2"
-                    : "w-5 h-5 absolute bottom-2 right-3"
+                    ? "absolute bottom-0.5 right-2 h-5 w-5"
+                    : "absolute bottom-2 right-3 h-5 w-5"
                 )}
               >
                 <path
